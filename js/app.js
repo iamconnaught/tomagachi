@@ -10,9 +10,26 @@ class Tomagachi {
 		this.age = 0
 
 	}
+	changeAge(){
+		this.age += 1;
+		console.log(this.age);
+		$('#currentAge').text(this.age)
+	}
+	changeHunger(){
+		this.hunger += 1;
+		$('#currentHunger').text(this.hunger)
 
+	}
+	changeSleepiness(){
+		this.sleepiness += 1;
+		$('#currentSleepiness').text(this.sleepiness)
 
+	}
+	changeBoredom(){
+		this.boredom += 1;
+		$('#currentBoredom').text(this.boredom)
 
+	}
 
 }
 
@@ -20,19 +37,32 @@ class Tomagachi {
 	let intervalId = 0;
 //game object
 const game = {
-	
-	timer(){
-		intervalId = window.setInterval(() => {
-			age++;
-			
+	gameStarted: false,
+	power: true,
+	time: 0,
+	intervalId: null,
+	startGame(){
+		const bender = new Tomagachi();
+		this.intervalId = setInterval(() => {
+			this.time += 1;	
+			//console.log(this.time);
+			if (this.time % 50 === 0){
+				bender.changeAge();
+			} 
+			if (this.time % 10 === 0){
+				bender.changeHunger();
+			}
+			if (this.time % 20 === 0){
+				bender.changeSleepiness();
+			}
+			if (this.time % 5 === 0){
+				bender.changeBoredom();
+			}
 		}, 100);
 
 	}
 }
 
-
-game.timer();
-console.log(this.age);
 //listeners
 
 $('form').on('submit', (e)=>{
@@ -40,6 +70,7 @@ $('form').on('submit', (e)=>{
 	const $inputValue = $('#nameInput').val();
 	const $nameHeader = $('<h2/>')
 	$('#userName').append(($nameHeader).text($inputValue));
+	game.startGame();
 	
 
 
