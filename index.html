@@ -6,10 +6,33 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 </head>
 <body>
-	
-
-
-
+	<div id="wholeGame">
+		<div id="top">	
+			<div id="allStats">
+				<div class="stats" id="hungerStat">Hunger: <span id="currentHUnger"></span></div>
+				<div class="stats" id="sleepinessStat">Sleepiness: <span id="currentSleepiness"></span></div>
+				<div class="stats" id="boredomStat">Boredom: <span id="currentBoredom"></span></div>
+			</div>
+			<div id="benderContainer">
+				<img id="bender" src="https://vignette.wikia.nocookie.net/en.futurama/images/4/43/Bender.png/revision/latest?cb=20150206072725">
+			</div>
+			<div id="nameAge">
+				<div id="name"><h1 id="userName"></h1></div>
+				<div id="age">Age: <span id="currentAge"></span></div>
+			</div>
+		</div>
+		<div id="bottom">
+			<div id="buttonContainer">
+				<button class="buttons" id="beer">Drink Beer</button>
+				<button class="buttons" id="sleep">Sleep Mode</button>
+				<button class="buttons" id="bend">Bend Things</button>
+			</div>
+		</div>
+	</div>
+	<form>
+    	<input type="text" id="nameInput" placeholder="Please enter name">
+    	<button type="submit">Submit</button>
+  </form>
 <script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>
