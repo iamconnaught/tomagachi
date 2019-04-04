@@ -33,7 +33,9 @@ class Tomagachi {
 	puberty(){
 		$('#bender').attr('src', 'http://slurmed.com/fanart/juliet/009_teen-bender.jpg')
 	}
-	
+	robothood(){
+		$('#bender').attr('src', 'https://vignette.wikia.nocookie.net/en.futurama/images/4/43/Bender.png/revision/latest?cb=20150206072725')
+	}
 	
 
 }
@@ -66,7 +68,10 @@ const game = {
 			if (bender.age >= 5){
 				bender.puberty();
 			}
-		}, 100);
+			if (bender.age >= 10){
+				bender.robothood();
+			}
+		}, 10);
 
 	},
 	beerMe(){
@@ -110,7 +115,7 @@ $('#bend').on('click', (e)=>{
 
 
 
-// "https://vignette.wikia.nocookie.net/en.futurama/images/4/43/Bender.png/revision/latest?cb=20150206072725"
+
 
 
 
