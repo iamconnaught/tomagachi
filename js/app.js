@@ -30,6 +30,9 @@ class Tomagachi {
 		$('#currentBoredom').text(this.boredom)
 
 	}
+	// puberty(){
+		
+	// }
 	
 	
 
@@ -60,6 +63,9 @@ const game = {
 			if (this.time % 5 === 0){
 				bender.changeBoredom();
 			}
+			// if (bender.age >= 5){
+			// 	bender.puberty();
+			// }
 		}, 100);
 
 	},
@@ -104,7 +110,7 @@ $('#bend').on('click', (e)=>{
 
 
 
-
+// "https://vignette.wikia.nocookie.net/en.futurama/images/4/43/Bender.png/revision/latest?cb=20150206072725"
 
 
 
