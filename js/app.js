@@ -30,6 +30,8 @@ class Tomagachi {
 		$('#currentBoredom').text(this.boredom)
 
 	}
+	
+	
 
 }
 
@@ -60,6 +62,18 @@ const game = {
 			}
 		}, 100);
 
+	},
+	beerMe(){
+		bender.hunger -= 5;
+		$('#currentHunger').text(bender.hunger)
+	},
+	sleepMode(){
+		bender.sleepiness -=5;
+		$('#currentSleepiness').text(bender.sleepiness)
+	},
+	bend(){
+		bender.boredom -=5;
+		$('#currentBoredom').text(bender.boredom)
 	}
 }
 
@@ -70,13 +84,20 @@ $('form').on('submit', (e)=>{
 	const $inputValue = $('#nameInput').val();
 	const $nameHeader = $('<h2/>')
 	$('#userName').append(($nameHeader).text($inputValue));
-	game.startGame();
-	
-
-
+	game.startGame();	
 })
 
+$('#beer').on('click', (e)=>{
+	game.beerMe();
+})
 
+$('#sleep').on('click', (e)=>{
+	game.sleepMode();
+})
+
+$('#bend').on('click', (e)=>{
+	game.bend();
+})
 
 
 
