@@ -30,9 +30,9 @@ class Tomagachi {
 		$('#currentBoredom').text(this.boredom)
 
 	}
-	// puberty(){
-		
-	// }
+	puberty(){
+		$('#bender').attr('src', 'http://slurmed.com/fanart/juliet/009_teen-bender.jpg')
+	}
 	
 	
 
@@ -63,9 +63,9 @@ const game = {
 			if (this.time % 5 === 0){
 				bender.changeBoredom();
 			}
-			// if (bender.age >= 5){
-			// 	bender.puberty();
-			// }
+			if (bender.age >= 5){
+				bender.puberty();
+			}
 		}, 100);
 
 	},
