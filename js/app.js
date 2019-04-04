@@ -36,8 +36,23 @@ class Tomagachi {
 	robothood(){
 		$('#bender').attr('src', 'https://vignette.wikia.nocookie.net/en.futurama/images/4/43/Bender.png/revision/latest?cb=20150206072725')
 	}
-	
+	beerMe(){
+		bender.hunger -= 5;
+		$('#currentHunger').text(bender.hunger)
+	}
+	sleepMode(){
+		bender.sleepiness -=5;
+		$('#currentSleepiness').text(bender.sleepiness)
+	}
+	bend(){
+		bender.boredom -=5;
+		$('#currentBoredom').text(bender.boredom)
+	}
+	dead(){
+		$('#top').replaceWith($('<img/>').attr('src', 'http://i.imgur.com/1agHb.jpg'));
+		$('#bottom').replaceWith($('<h1/>').text('Your bending unit has kicked the can. Play again.'))
 
+	}
 }
 
 
@@ -48,8 +63,10 @@ const game = {
 	power: true,
 	time: 0,
 	intervalId: null,
+	currentPet: null,
 	startGame(){
 		const bender = new Tomagachi();
+		this.currentPet = bender;
 		this.intervalId = setInterval(() => {
 			this.time += 1;	
 			//console.log(this.time);
@@ -71,21 +88,14 @@ const game = {
 			if (bender.age >= 10){
 				bender.robothood();
 			}
-		}, 10);
+			if (bender.hunger >=10 || bender.boredom >= 10 || bender.sleepiness >=10){
+				bender.dead();
+				clearInterval(this.intervalId);
+			}
+		}, 100);
 
 	},
-	beerMe(){
-		bender.hunger -= 5;
-		$('#currentHunger').text(bender.hunger)
-	},
-	sleepMode(){
-		bender.sleepiness -=5;
-		$('#currentSleepiness').text(bender.sleepiness)
-	},
-	bend(){
-		bender.boredom -=5;
-		$('#currentBoredom').text(bender.boredom)
-	}
+	
 }
 
 //listeners
@@ -99,15 +109,15 @@ $('form').on('submit', (e)=>{
 })
 
 $('#beer').on('click', (e)=>{
-	game.beerMe();
+	game.currentPet.beerMe();
 })
 
 $('#sleep').on('click', (e)=>{
-	game.sleepMode();
+	game.currentPet.sleepMode();
 })
 
 $('#bend').on('click', (e)=>{
-	game.bend();
+	game.currentPet.bend();
 })
 
 
