@@ -30,33 +30,35 @@ class Tomagachi {
 		$('#currentBoredom').text(this.boredom)
 
 	}
-	puberty(){
+	evolve1(){
 		$('#bender').attr('src', 'http://slurmed.com/fanart/juliet/009_teen-bender.jpg')
 	}
-	robothood(){
+	evolve2(){
 		$('#bender').attr('src', 'https://vignette.wikia.nocookie.net/en.futurama/images/4/43/Bender.png/revision/latest?cb=20150206072725')
 	}
 	beerMe(){
-		bender.hunger -= 5;
-		$('#currentHunger').text(bender.hunger)
+		this.hunger -= 1;
+		$('#currentHunger').text(this.hunger)
 	}
 	sleepMode(){
-		bender.sleepiness -=5;
-		$('#currentSleepiness').text(bender.sleepiness)
+		this.sleepiness -= 1;
+		$('#currentSleepiness').text(this.sleepiness)
 	}
 	bend(){
-		bender.boredom -=5;
-		$('#currentBoredom').text(bender.boredom)
+		
+		this.boredom -= 1;
+		$('#currentBoredom').text(this.boredom)
 	}
 	dead(){
-		$('#top').replaceWith($('<img/>').attr('src', 'http://i.imgur.com/1agHb.jpg'));
+		$('#bender').attr('src', 'https://gamepedia.cursecdn.com/futuramaworldsoftomorrow_gamepedia_en/thumb/d/d1/Ghost_Bender.png/132px-Ghost_Bender.png?version=bf72706ffeaa982ee4de295ef3956a2a')
+		//$('#top').replaceWith($('<img/>').attr('src', 'http://i.imgur.com/1agHb.jpg'));
 		$('#bottom').replaceWith($('<h1/>').text('Your bending unit has kicked the can. Play again.'))
 
 	}
 }
 
 
-	let intervalId = 0;
+let intervalId = 0;
 //game object
 const game = {
 	gameStarted: false,
@@ -71,25 +73,25 @@ const game = {
 			this.time += 1;	
 			//console.log(this.time);
 			if (this.time % 50 === 0){
-				bender.changeAge();
+				this.currentPet.changeAge();
 			} 
-			if (this.time % 10 === 0){
-				bender.changeHunger();
+			if (this.time % 15 === 0){
+				this.currentPet.changeHunger();
 			}
 			if (this.time % 20 === 0){
-				bender.changeSleepiness();
+				this.currentPet.changeSleepiness();
 			}
-			if (this.time % 5 === 0){
-				bender.changeBoredom();
+			if (this.time % 10 === 0){
+				this.currentPet.changeBoredom();
 			}
-			if (bender.age >= 5){
-				bender.puberty();
+			if (this.currentPet.age >= 5){
+				this.currentPet.evolve1();
 			}
-			if (bender.age >= 10){
-				bender.robothood();
+			if (this.currentPet.age >= 10){
+				this.currentPet.evolve2();
 			}
-			if (bender.hunger >=10 || bender.boredom >= 10 || bender.sleepiness >=10){
-				bender.dead();
+			if (this.currentPet.hunger >=10 || this.currentPet.boredom >= 10 || this.currentPet.sleepiness >=10){
+				this.currentPet.dead();
 				clearInterval(this.intervalId);
 			}
 		}, 100);
@@ -108,6 +110,8 @@ $('form').on('submit', (e)=>{
 	game.startGame();	
 })
 
+
+//these events are not able to acced the functions contained within them
 $('#beer').on('click', (e)=>{
 	game.currentPet.beerMe();
 })
